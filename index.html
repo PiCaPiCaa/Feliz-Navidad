@@ -1,284 +1,114 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Feliz Navidad 🎄</title>
-
-<style>
-    body {
-        margin: 0;
-        font-family: "Georgia", serif;
-        background: url('https://i.imgur.com/8yqgk6U.jpeg');
-        background-size: cover;
-        background-attachment: fixed;
-        color: white;
-        text-align: center;
-        overflow-x: hidden;
-    }
-
-    /* Luces navideñas */
-    .luces {
-        width: 100%;
-        height: 60px;
-        background: url('https://i.imgur.com/0Z8FQ0M.png');
-        background-size: contain;
-        animation: parpadeo 1.5s infinite;
-    }
-
-    @keyframes parpadeo {
-        0% { opacity: 1; }
-        50% { opacity: 0.6; }
-        100% { opacity: 1; }
-    }
-
-    /* Nieve */
-    .snowflake {
-        position: fixed;
-        top: -10px;
-        color: white;
-        font-size: 1.2em;
-        animation: fall linear infinite;
-        opacity: 0.8;
-        pointer-events: none;
-    }
-
-    @keyframes fall {
-        0% { transform: translateY(-10vh); }
-        100% { transform: translateY(110vh); }
-    }
-
-    /* Sobre animado */
-    #sobre-container {
-        margin-top: 10vh;
-        display: flex;
-        justify-content: center;
-    }
-
-    #sobre {
-        width: 260px;
-        height: 180px;
-        background: url('https://i.imgur.com/2nQw6yV.png');
-        background-size: cover;
-        cursor: pointer;
-        transition: transform 0.5s;
-    }
-
-    #sobre:hover {
-        transform: scale(1.05);
-    }
-
-    /* Animación de apertura */
-    .abrir {
-        animation: abrirSobre 1s forwards;
-    }
-
-    @keyframes abrirSobre {
-        0% { transform: rotateX(0deg); opacity: 1; }
-        100% { transform: rotateX(90deg); opacity: 0; }
-    }
-
-    /* Carta */
-    #carta {
-        display: none;
-        padding: 30px;
-        margin: 20px;
-        background: rgba(255, 255, 255, 0.15);
-        border-radius: 15px;
-        backdrop-filter: blur(5px);
-        animation: aparecer 1s ease forwards;
-    }
-
-    @keyframes aparecer {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    h1 {
-        font-size: 2.2em;
-        margin-bottom: 10px;
-        text-shadow: 0 0 10px black;
-    }
-
-    h2 {
-        margin-top: 25px;
-        font-size: 1.6em;
-        color: gold;
-    }
-
-    p {
-        font-size: 1.2em;
-        line-height: 1.6em;
-        margin: 15px 0;
-    }
-
-    footer {
-        margin-top: 40px;
-        font-size: 1.1em;
-        color: gold;
-    }
-
-    /* Avión */
-    #avion {
-        position: fixed;
-        top: 20%;
-        left: -200px;
-        font-size: 2.5em;
-        animation: vuelo 8s linear forwards;
-        display: none;
-    }
-
-    @keyframes vuelo {
-        0% { left: -200px; top: 20%; }
-        50% { left: 50%; top: 10%; }
-        100% { left: 110%; top: 25%; }
-    }
-
-    /* Corazones */
-    .corazon {
-        position: fixed;
-        color: pink;
-        font-size: 1.5em;
-        animation: subir 3s linear forwards;
-        opacity: 0;
-    }
-
-    @keyframes subir {
-        0% { transform: translateY(0); opacity: 1; }
-        100% { transform: translateY(-150px); opacity: 0; }
-    }
-
-    /* Mensaje final sorpresa */
-    #sorpresa {
-        display: none;
-        margin-top: 40px;
-        font-size: 1.6em;
-        color: gold;
-        animation: aparecer 2s ease forwards;
-    }
-</style>
+    <meta charset="UTF-8" />
+    <title>Carta de Navidad para ti 🎄</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
+    <!-- Música (se activará al hacer clic en el sobre) -->
+    <audio id="navidad-audio" src="assets/musica-navidad.mp3"></audio>
 
-<!-- Música navideña -->
-<audio autoplay loop>
-    <source src="https://files.catbox.moe/6n6j8p.mp3" type="audio/mpeg">
-</audio>
+    <div class="background-overlay"></div>
 
-<!-- Luces -->
-<div class="luces"></div>
+    <div class="page-container">
+        <!-- Luces navideñas arriba -->
+        <div class="christmas-lights">
+            <span class="light red"></span>
+            <span class="light yellow"></span>
+            <span class="light green"></span>
+            <span class="light blue"></span>
+            <span class="light red"></span>
+            <span class="light yellow"></span>
+            <span class="light green"></span>
+            <span class="light blue"></span>
+        </div>
 
-<!-- Nieve -->
-<script>
-    for (let i = 0; i < 40; i++) {
-        let snow = document.createElement("div");
-        snow.className = "snowflake";
-        snow.innerHTML = "❄";
-        snow.style.left = Math.random() * 100 + "vw";
-        snow.style.animationDuration = 3 + Math.random() * 5 + "s";
-        snow.style.fontSize = 15 + Math.random() * 20 + "px";
-        document.body.appendChild(snow);
-    }
-</script>
+        <!-- Contenido principal -->
+        <div class="content-wrapper">
+            <div class="photo-frame">
+                <img src="assets/foto-ella-y-tu.jpg" alt="Nosotros" />
+            </div>
 
-<h1>🎄✨ Feliz Navidad ✨🎄</h1>
-<p>Para ti, para Sergio y para vuestra familia…</p>
+            <div class="letter-area">
+                <!-- Sobre animado -->
+                <div class="envelope-container" id="envelope">
+                    <div class="envelope">
+                        <div class="envelope-flap"></div>
+                        <div class="envelope-body"></div>
+                        <div class="envelope-letter-preview">
+                            <span>Haz clic para abrir tu carta</span>
+                        </div>
+                    </div>
+                    <div class="envelope-glow"></div>
+                </div>
 
-<!-- Avión -->
-<div id="avion">✈️💖</div>
+                <!-- Carta completa -->
+                <div class="letter-content" id="letter">
+                    <div class="letter-inner">
+                        <p class="letter-greeting">🎄✨ Carta de Navidad para ti, para Sergio y para vuestra familia ✨🎄</p>
 
-<!-- Sobre -->
-<div id="sobre-container">
-    <div id="sobre"></div>
-</div>
+                        <p>
+                            Hoy, desde Las Palmas, quiero enviaros un abrazo que cruce el mar
+                            y llegue hasta Sevilla, donde están las personas que hacen que mi vida
+                            se sienta un poquito más luminosa.
+                        </p>
 
-<!-- Carta -->
-<div id="carta">
-    <h2>❤️🎁 Para ti…</h2>
-    <p>
-        Hoy quiero enviarte un abrazo que cruce el mar  
-        y llegue directo a tu corazón en Sevilla.  
-        Gracias por iluminar mis días, por tu cariño,  
-        y por hacer que incluso la distancia se sienta pequeña.  
-        Esta Navidad te pienso más que nunca  
-        y deseo que cada luz, cada detalle,  
-        te recuerde lo especial que eres para mí.  
-        <br><br><strong>Eres mi ilusión, mi calma y mi alegría.</strong> ✨❤️
-    </p>
+                        <p>
+                            A ti, que eres mi calma, mi ilusión y mi pensamiento favorito del día.
+                            Gracias por hacer que incluso la distancia se sienta pequeña.
+                            Esta Navidad no puedo abrazarte como quisiera,
+                            pero sí puedo recordarte lo importante que eres para mí
+                            y lo mucho que deseo compartir contigo todo lo que viene.
+                        </p>
 
-    <h2>⭐🧸 Para Sergio…</h2>
-    <p>
-        Que estas fiestas le traigan risas, magia  
-        y momentos que se queden en su memoria para siempre.  
-        Que nunca pierda esa luz tan bonita que tiene,  
-        esa alegría que contagia incluso desde lejos.  
-        <br><br><strong>Feliz Navidad, campeón.</strong> 🎄⭐
-    </p>
+                        <p>
+                            A Sergio, le deseo una Navidad llena de risas, juegos
+                            y momentos bonitos que se queden en su memoria.
+                            Que nunca pierda esa luz tan especial que tiene,
+                            esa alegría que contagia incluso desde lejos.
+                        </p>
 
-    <h2>🎅🏼🏡 Para tu familia…</h2>
-    <p>
-        Os deseo una Navidad llena de paz, unión y cariño.  
-        Que el hogar se llene de luz,  
-        de buenos momentos y de todo lo bonito  
-        que estas fechas pueden traer.  
-        Que la magia de estas fiestas os abrace fuerte. 🎁🌟
-    </p>
+                        <p>
+                            Y a tu familia, les mando mis mejores deseos:
+                            salud, unión, paz y una Navidad llena de cariño.
+                            Gracias por ser parte de tu mundo,
+                            porque todo lo que te rodea también es valioso para mí.
+                        </p>
 
-    <p>
-        Aunque este año nos separen kilómetros,  
-        mi corazón viaja con vosotros.  
-        Que la Navidad os llene de amor  
-        y que el Año Nuevo nos regale más momentos juntos,  
-        más calma, más risas, más nosotros. ✨💞
-    </p>
+                        <p>
+                            Ojalá estas fiestas os abracen fuerte,
+                            os llenen de magia,
+                            y os regalen momentos que calienten el corazón.
+                        </p>
 
-    <footer>
-        🎄❤️ Feliz Navidad ❤️🎄<br>
-        Con todo mi cariño,<br>
-        <strong>Eduardo</strong>
-    </footer>
-</div>
+                        <p>
+                            Yo, desde aquí, os pienso, os valoro
+                            y os llevo conmigo en cada deseo de Año Nuevo.
+                        </p>
 
-<!-- Mensaje sorpresa -->
-<div id="sorpresa">✨💖 Siempre contigo, aunque sea desde otra isla 💖✨</div>
+                        <p class="letter-closing">
+                            Feliz Navidad, mi amor.<br />
+                            Feliz Navidad, Sergio.<br />
+                            Feliz Navidad a toda vuestra familia.
+                        </p>
 
-<script>
-    const sobre = document.getElementById("sobre");
-    const carta = document.getElementById("carta");
-    const avion = document.getElementById("avion");
-    const sorpresa = document.getElementById("sorpresa");
+                        <p class="letter-sign">
+                            Con todo mi cariño,<br />
+                            Eduardo
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    sobre.onclick = function() {
-        sobre.classList.add("abrir");
+        <!-- Nieve suave -->
+        <div class="snow snow1"></div>
+        <div class="snow snow2"></div>
+        <div class="snow snow3"></div>
+    </div>
 
-        setTimeout(() => {
-            sobre.style.display = "none";
-            carta.style.display = "block";
-        }, 900);
-
-        setTimeout(() => {
-            avion.style.display = "block";
-        }, 1200);
-
-        setTimeout(() => {
-            sorpresa.style.display = "block";
-        }, 5000);
-
-        // Corazones
-        for (let i = 0; i < 10; i++) {
-            setTimeout(() => {
-                let heart = document.createElement("div");
-                heart.className = "corazon";
-                heart.innerHTML = "💗";
-                heart.style.left = (50 + Math.random() * 20) + "vw";
-                heart.style.top = "50vh";
-                document.body.appendChild(heart);
-                setTimeout(() => heart.remove(), 3000);
-            }, i * 300);
-        }
-    };
-</script>
-
+    <script src="script.js"></script>
 </body>
 </html>
