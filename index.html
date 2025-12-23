@@ -9,10 +9,27 @@
     body {
         margin: 0;
         font-family: "Georgia", serif;
-        background: linear-gradient(to bottom, #b30000, #4d0000);
+        background: url('https://i.imgur.com/8yqgk6U.jpeg');
+        background-size: cover;
+        background-attachment: fixed;
         color: white;
         text-align: center;
         overflow-x: hidden;
+    }
+
+    /* Luces navideñas */
+    .luces {
+        width: 100%;
+        height: 60px;
+        background: url('https://i.imgur.com/0Z8FQ0M.png');
+        background-size: contain;
+        animation: parpadeo 1.5s infinite;
+    }
+
+    @keyframes parpadeo {
+        0% { opacity: 1; }
+        50% { opacity: 0.6; }
+        100% { opacity: 1; }
     }
 
     /* Nieve */
@@ -23,6 +40,7 @@
         font-size: 1.2em;
         animation: fall linear infinite;
         opacity: 0.8;
+        pointer-events: none;
     }
 
     @keyframes fall {
@@ -30,27 +48,34 @@
         100% { transform: translateY(110vh); }
     }
 
-    /* Pantalla inicial */
-    #inicio {
-        padding-top: 20vh;
+    /* Sobre animado */
+    #sobre-container {
+        margin-top: 10vh;
+        display: flex;
+        justify-content: center;
     }
 
-    #btnAbrir {
-        background: gold;
-        color: #8b0000;
-        padding: 15px 30px;
-        border: none;
-        border-radius: 10px;
-        font-size: 1.3em;
+    #sobre {
+        width: 260px;
+        height: 180px;
+        background: url('https://i.imgur.com/2nQw6yV.png');
+        background-size: cover;
         cursor: pointer;
-        font-weight: bold;
-        box-shadow: 0 0 10px gold;
-        transition: 0.3s;
+        transition: transform 0.5s;
     }
 
-    #btnAbrir:hover {
-        transform: scale(1.1);
-        box-shadow: 0 0 20px white;
+    #sobre:hover {
+        transform: scale(1.05);
+    }
+
+    /* Animación de apertura */
+    .abrir {
+        animation: abrirSobre 1s forwards;
+    }
+
+    @keyframes abrirSobre {
+        0% { transform: rotateX(0deg); opacity: 1; }
+        100% { transform: rotateX(90deg); opacity: 0; }
     }
 
     /* Carta */
@@ -72,6 +97,7 @@
     h1 {
         font-size: 2.2em;
         margin-bottom: 10px;
+        text-shadow: 0 0 10px black;
     }
 
     h2 {
@@ -91,10 +117,57 @@
         font-size: 1.1em;
         color: gold;
     }
+
+    /* Avión */
+    #avion {
+        position: fixed;
+        top: 20%;
+        left: -200px;
+        font-size: 2.5em;
+        animation: vuelo 8s linear forwards;
+        display: none;
+    }
+
+    @keyframes vuelo {
+        0% { left: -200px; top: 20%; }
+        50% { left: 50%; top: 10%; }
+        100% { left: 110%; top: 25%; }
+    }
+
+    /* Corazones */
+    .corazon {
+        position: fixed;
+        color: pink;
+        font-size: 1.5em;
+        animation: subir 3s linear forwards;
+        opacity: 0;
+    }
+
+    @keyframes subir {
+        0% { transform: translateY(0); opacity: 1; }
+        100% { transform: translateY(-150px); opacity: 0; }
+    }
+
+    /* Mensaje final sorpresa */
+    #sorpresa {
+        display: none;
+        margin-top: 40px;
+        font-size: 1.6em;
+        color: gold;
+        animation: aparecer 2s ease forwards;
+    }
 </style>
 </head>
 
 <body>
+
+<!-- Música navideña -->
+<audio autoplay loop>
+    <source src="https://files.catbox.moe/6n6j8p.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Luces -->
+<div class="luces"></div>
 
 <!-- Nieve -->
 <script>
@@ -109,11 +182,15 @@
     }
 </script>
 
-<!-- Pantalla inicial -->
-<div id="inicio">
-    <h1>🎄✨ Feliz Navidad ✨🎄</h1>
-    <p>Para ti, para Sergio y para vuestra familia…</p>
-    <button id="btnAbrir">💌 Abrir Carta</button>
+<h1>🎄✨ Feliz Navidad ✨🎄</h1>
+<p>Para ti, para Sergio y para vuestra familia…</p>
+
+<!-- Avión -->
+<div id="avion">✈️💖</div>
+
+<!-- Sobre -->
+<div id="sobre-container">
+    <div id="sobre"></div>
 </div>
 
 <!-- Carta -->
@@ -163,10 +240,43 @@
     </footer>
 </div>
 
+<!-- Mensaje sorpresa -->
+<div id="sorpresa">✨💖 Siempre contigo, aunque sea desde otra isla 💖✨</div>
+
 <script>
-    document.getElementById("btnAbrir").onclick = function() {
-        document.getElementById("inicio").style.display = "none";
-        document.getElementById("carta").style.display = "block";
+    const sobre = document.getElementById("sobre");
+    const carta = document.getElementById("carta");
+    const avion = document.getElementById("avion");
+    const sorpresa = document.getElementById("sorpresa");
+
+    sobre.onclick = function() {
+        sobre.classList.add("abrir");
+
+        setTimeout(() => {
+            sobre.style.display = "none";
+            carta.style.display = "block";
+        }, 900);
+
+        setTimeout(() => {
+            avion.style.display = "block";
+        }, 1200);
+
+        setTimeout(() => {
+            sorpresa.style.display = "block";
+        }, 5000);
+
+        // Corazones
+        for (let i = 0; i < 10; i++) {
+            setTimeout(() => {
+                let heart = document.createElement("div");
+                heart.className = "corazon";
+                heart.innerHTML = "💗";
+                heart.style.left = (50 + Math.random() * 20) + "vw";
+                heart.style.top = "50vh";
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 3000);
+            }, i * 300);
+        }
     };
 </script>
 
