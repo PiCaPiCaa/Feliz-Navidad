@@ -1,160 +1,131 @@
-/* Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* Reset y Fuentes */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    font-family: "Georgia", serif;
-    overflow-x: hidden;
-    background: radial-gradient(circle at top, #b30000 0%, #4a0000 60%, #1a0000 100%);
-    color: #3b2a1a;
-}
-
-/* Brillo navideño suave */
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.15), transparent 60%),
-                radial-gradient(circle at 70% 80%, rgba(255,255,255,0.12), transparent 70%);
-    pointer-events: none;
-    z-index: -1;
-}
-
-/* Nieve */
-.snow {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    background-image:
-        radial-gradient(3px 3px at 20px 20px, white, transparent),
-        radial-gradient(3px 3px at 80px 40px, white, transparent),
-        radial-gradient(3px 3px at 50px 90px, white, transparent),
-        radial-gradient(3px 3px at 120px 10px, white, transparent);
-    background-size: 200px 200px;
-    animation: snow 12s linear infinite;
-    opacity: 0.45;
-    z-index: -1;
-}
-
-@keyframes snow {
-    from { transform: translateY(-200px); }
-    to { transform: translateY(200px); }
-}
-
-/* Contenedor */
-.container {
-    width: 100%;
-    min-height: 100vh;
-    padding-top: 80px;
+    font-family: 'Montserrat', sans-serif;
+    background: radial-gradient(circle at center, #1a472a 0%, #0a2416 100%); /* Verde bosque profundo */
+    height: 100vh;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    overflow: hidden;
+    color: #333;
 }
 
-/* SOBRE 3D */
-.envelope-wrapper {
-    width: 320px;
-    height: 220px;
-    cursor: pointer;
-    perspective: 1000px;
-    margin-bottom: 40px;
+/* Nieve Animada Mejorada */
+.snow-container {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: 
+        radial-gradient(4px 4px at 20px 30px, #fff, transparent),
+        radial-gradient(6px 6px at 100px 150px, #fff, transparent),
+        radial-gradient(3px 3px at 200px 400px, #fff, transparent);
+    background-size: 600px 600px;
+    animation: snowAnim 20s linear infinite;
+    z-index: -1;
+    opacity: 0.5;
 }
+
+@keyframes snowAnim {
+    from { background-position: 0 0; }
+    to { background-position: 600px 600px; }
+}
+
+/* El Sobre */
+.envelope-wrapper {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    cursor: pointer;
+    transition: transform 0.5s ease;
+}
+
+.envelope-wrapper:hover { transform: scale(1.05); }
 
 .envelope {
+    position: relative;
     width: 100%;
     height: 100%;
-    position: relative;
-}
-
-.pocket {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(145deg, #8b0000, #5a0000);
-    border-radius: 12px;
-    z-index: 1;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    background: #b30000; /* Rojo Navidad */
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
 }
 
 .flap {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 60%;
-    background: linear-gradient(145deg, #cc0000, #8b0000);
-    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    top: 0; width: 0; height: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-top: 100px solid #d40000;
     transform-origin: top;
-    transition: transform 1s ease;
+    transition: transform 0.6s ease;
+    z-index: 3;
+}
+
+.pocket {
+    position: absolute;
+    bottom: 0; width: 0; height: 0;
+    border-left: 150px solid #e60000;
+    border-right: 150px solid #e60000;
+    border-bottom: 100px solid #c80000;
+    border-radius: 0 0 10px 10px;
     z-index: 2;
 }
 
 .letter-preview {
     position: absolute;
-    inset: 20% 10% 10% 10%;
-    background: #fff8f0;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #7b4a35;
-    font-size: 1rem;
-    z-index: 0;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    top: 10%; left: 5%; width: 90%; height: 80%;
+    background: #fff;
+    text-align: center;
+    padding-top: 20px;
+    transition: transform 0.6s ease;
+    z-index: 1;
 }
 
-/* Carta */
+.seal {
+    width: 40px; height: 40px;
+    background: gold;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    line-height: 40px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Estado Abierto */
+.open .flap { transform: rotateX(180deg); z-index: 0; }
+.open .letter-preview { transform: translateY(-80px); }
+
+/* La Carta Extendida */
 .letter {
-    width: 90%;
-    max-width: 600px;
-    background: #fff8f0;
-    border-radius: 14px;
-    padding: 24px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    transform: translateY(-40px) scale(0.8);
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 90%; max-width: 500px;
+    height: 85vh;
+    background: #fffcf2;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 50px rgba(0,0,0,0.5);
+    z-index: 10;
+    overflow-y: auto;
+    transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     opacity: 0;
-    transition: all 1.2s ease;
+    border: 5px double #d4af37; /* Borde dorado */
 }
 
-.letter.visible {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-}
+.letter.active { transform: translate(-50%, -50%) scale(1); opacity: 1; }
 
-.letter-content {
-    line-height: 1.6;
-}
+/* Contenido de la Carta */
+.photo { width: 100%; border-radius: 10px; border: 3px solid #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.2); margin-bottom: 20px; }
+h2 { font-family: 'Great Vibes', cursive; color: #b30000; font-size: 2.5rem; text-align: center; }
+.to { text-align: center; font-style: italic; color: #555; margin-bottom: 20px; }
+.text-body p { margin-bottom: 15px; line-height: 1.6; color: #2c3e50; }
+.signature span { font-family: 'Great Vibes', cursive; font-size: 2rem; color: #b30000; }
 
-.photo {
-    width: 100%;
-    border-radius: 12px;
-    margin-bottom: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-}
-
-h2 {
-    color: #a12c2c;
-    margin-bottom: 16px;
-    text-align: center;
-}
-
-.closing {
-    margin-top: 20px;
-    color: #8e1f1f;
-    font-weight: bold;
-    text-align: center;
-}
-
-.signature {
-    margin-top: 10px;
-    font-style: italic;
-    text-align: right;
-    color: #5a3b2a;
-}
-
-/* Animación al abrir */
-.envelope.open .flap {
-    transform: rotateX(180deg);
+#close-btn {
+    display: block; margin: 20px auto 0;
+    padding: 10px 20px;
+    background: #1a472a; color: white;
+    border: none; border-radius: 20px;
+    cursor: pointer;
 }
