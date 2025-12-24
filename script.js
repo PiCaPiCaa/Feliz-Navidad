@@ -14,6 +14,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
             audio.currentTime = 0;
             audio.play().catch(() => {});
+        } else {
+            opened = false;
+
+            envelope.classList.remove("open");
+            letter.classList.remove("visible");
+
+            audio.pause();
+            audio.currentTime = 0;
         }
     });
 });
