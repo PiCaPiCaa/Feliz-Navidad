@@ -8,25 +8,16 @@
 body {
     font-family: "Georgia", serif;
     overflow-x: hidden;
-    background: radial-gradient(circle at top, #8b0000 0%, #4a0000 50%, #1a0000 100%);
     color: #3b2a1a;
 }
 
-/* Fondo con luces navideñas */
+/* Fondo navideño cálido */
 .bg {
     position: fixed;
     inset: 0;
-    background:
-        radial-gradient(circle at 20% 30%, rgba(255, 220, 150, 0.25), transparent 60%),
-        radial-gradient(circle at 80% 70%, rgba(255, 200, 120, 0.18), transparent 60%),
-        radial-gradient(circle at 50% 10%, rgba(255, 255, 255, 0.15), transparent 70%);
+    background: url('https://i.imgur.com/4yq8q9M.jpeg') center/cover no-repeat;
+    filter: brightness(0.55) blur(2px);
     z-index: -2;
-    animation: glow 8s ease-in-out infinite alternate;
-}
-
-@keyframes glow {
-    from { filter: brightness(1); }
-    to { filter: brightness(1.25); }
 }
 
 /* Nieve */
@@ -34,23 +25,17 @@ body {
     position: fixed;
     inset: 0;
     pointer-events: none;
-    background-image:
-        radial-gradient(3px 3px at 20px 20px, white, transparent),
-        radial-gradient(3px 3px at 80px 40px, white, transparent),
-        radial-gradient(3px 3px at 50px 90px, white, transparent),
-        radial-gradient(3px 3px at 120px 10px, white, transparent);
-    background-size: 200px 200px;
-    animation: snow 12s linear infinite;
-    opacity: 0.45;
+    background-image: url('https://i.imgur.com/7VbJkQp.png');
+    animation: snow 18s linear infinite;
     z-index: -1;
 }
 
 @keyframes snow {
-    from { transform: translateY(-200px); }
-    to { transform: translateY(200px); }
+    from { background-position: 0 -1000px; }
+    to { background-position: 0 1000px; }
 }
 
-/* Contenedor */
+/* Contenedor principal */
 .container {
     width: 100%;
     min-height: 100vh;
@@ -78,10 +63,9 @@ body {
 .pocket {
     position: absolute;
     inset: 0;
-    background: linear-gradient(145deg, #a00000, #6a0000);
+    background: linear-gradient(145deg, #b71c1c, #8e1414);
     border-radius: 12px;
     z-index: 1;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
 }
 
 .flap {
@@ -90,7 +74,7 @@ body {
     left: 0;
     right: 0;
     height: 60%;
-    background: linear-gradient(145deg, #cc0000, #8b0000);
+    background: linear-gradient(145deg, #d32f2f, #b71c1c);
     clip-path: polygon(0 0, 100% 0, 50% 100%);
     transform-origin: top;
     transition: transform 1s ease;
@@ -108,10 +92,9 @@ body {
     color: #7b4a35;
     font-size: 1rem;
     z-index: 0;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
 }
 
-/* Carta */
+/* Carta que sale del sobre */
 .letter {
     width: 90%;
     max-width: 600px;
@@ -160,7 +143,7 @@ h2 {
     color: #5a3b2a;
 }
 
-/* Animación abrir/cerrar */
+/* Animación al abrir */
 .envelope.open .flap {
     transform: rotateX(180deg);
 }
