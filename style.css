@@ -11,51 +11,98 @@ body {
     color: #3b2a1a;
 }
 
-/* 🎄 Fondo navideño profesional sin imágenes */
+/* 🎄 Fondo navideño profesional */
 .bg {
     position: fixed;
     inset: 0;
     background:
-        radial-gradient(circle at top, #b30000 0%, #4a0000 50%, #1a0000 100%);
-    z-index: -3;
+        radial-gradient(circle at 50% -20%, #ff4d4d 0%, #b30000 40%, #4a0000 80%, #1a0000 100%);
+    z-index: -4;
+    animation: bgPulse 8s ease-in-out infinite alternate;
 }
 
-/* ✨ Luces navideñas animadas */
+@keyframes bgPulse {
+    from { filter: brightness(1); }
+    to { filter: brightness(1.25); }
+}
+
+/* ✨ Luces navideñas flotando */
 .lights {
     position: fixed;
     inset: 0;
+    pointer-events: none;
+    z-index: -3;
     background:
-        radial-gradient(circle at 15% 20%, rgba(255,255,150,0.25), transparent 60%),
-        radial-gradient(circle at 80% 30%, rgba(255,200,120,0.25), transparent 60%),
-        radial-gradient(circle at 50% 80%, rgba(255,255,255,0.18), transparent 70%);
-    animation: glow 6s ease-in-out infinite alternate;
-    z-index: -2;
+        radial-gradient(circle at 10% 20%, rgba(255,255,200,0.35), transparent 60%),
+        radial-gradient(circle at 80% 30%, rgba(255,200,150,0.30), transparent 60%),
+        radial-gradient(circle at 30% 80%, rgba(255,255,255,0.25), transparent 70%),
+        radial-gradient(circle at 70% 60%, rgba(255,180,120,0.28), transparent 70%);
+    animation: lightsMove 10s ease-in-out infinite alternate;
 }
 
-@keyframes glow {
-    from { filter: brightness(1); }
-    to { filter: brightness(1.4); }
+@keyframes lightsMove {
+    from { transform: translateY(0px) translateX(0px); }
+    to { transform: translateY(20px) translateX(-20px); }
 }
 
-/* ❄ Copos de nieve realistas */
+/* ❄ Copos de nieve en 3 capas */
 .snow {
     position: fixed;
     inset: 0;
     pointer-events: none;
+    z-index: -2;
     background-image:
         radial-gradient(3px 3px at 20px 20px, white, transparent),
         radial-gradient(3px 3px at 80px 40px, white, transparent),
         radial-gradient(3px 3px at 50px 90px, white, transparent),
-        radial-gradient(3px 3px at 120px 10px, white, transparent);
-    background-size: 200px 200px;
-    animation: snow 10s linear infinite;
+        radial-gradient(3px 3px at 120px 10px, white, transparent),
+        radial-gradient(2px 2px at 160px 70px, rgba(255,255,255,0.8), transparent),
+        radial-gradient(4px 4px at 200px 30px, rgba(255,255,255,0.9), transparent);
+    background-size: 250px 250px;
+    animation: snowFall 12s linear infinite;
     opacity: 0.55;
-    z-index: -1;
 }
 
-@keyframes snow {
+@keyframes snowFall {
     from { transform: translateY(-200px); }
     to { transform: translateY(200px); }
+}
+
+/* ❄ Segunda capa de nieve (más lenta) */
+.snow::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(3px 3px at 40px 10px, white, transparent),
+        radial-gradient(3px 3px at 100px 80px, white, transparent),
+        radial-gradient(3px 3px at 150px 50px, white, transparent);
+    background-size: 300px 300px;
+    animation: snowFall2 18s linear infinite;
+    opacity: 0.35;
+}
+
+@keyframes snowFall2 {
+    from { transform: translateY(-300px); }
+    to { transform: translateY(300px); }
+}
+
+/* ❄ Tercera capa (muy suave, muy grande) */
+.snow::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(6px 6px at 60px 30px, rgba(255,255,255,0.5), transparent),
+        radial-gradient(5px 5px at 180px 90px, rgba(255,255,255,0.4), transparent);
+    background-size: 400px 400px;
+    animation: snowFall3 25s linear infinite;
+    opacity: 0.25;
+}
+
+@keyframes snowFall3 {
+    from { transform: translateY(-400px); }
+    to { transform: translateY(400px); }
 }
 
 /* Contenedor */
@@ -168,3 +215,4 @@ h2 {
 .envelope.open .flap {
     transform: rotateX(180deg);
 }
+
