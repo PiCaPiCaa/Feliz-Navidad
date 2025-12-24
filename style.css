@@ -39,6 +39,7 @@ body {
         radial-gradient(circle at 70% 60%, rgba(255,180,120,0.28), transparent 70%);
     animation: lightsMove 10s ease-in-out infinite alternate;
 }
+
 .titulo-principal {
     color: #ffdcdc;
     font-size: 1.8rem;
@@ -76,7 +77,7 @@ body {
     to { transform: translateY(200px); }
 }
 
-/* ❄ Segunda capa de nieve (más lenta) */
+/* ❄ Segunda capa de nieve */
 .snow::before {
     content: "";
     position: absolute;
@@ -95,7 +96,7 @@ body {
     to { transform: translateY(300px); }
 }
 
-/* ❄ Tercera capa (muy suave, muy grande) */
+/* ❄ Tercera capa de nieve */
 .snow::after {
     content: "";
     position: absolute;
@@ -130,6 +131,7 @@ body {
     cursor: pointer;
     perspective: 1200px;
     margin-bottom: 40px;
+    z-index: 10;
 }
 
 .envelope {
@@ -160,18 +162,26 @@ body {
     z-index: 2;
 }
 
+/* ⭐ TEXTO DEL SOBRE (ARREGLADO) */
 .letter-preview {
     position: absolute;
     inset: 22% 12% 12% 12%;
-    background: #fff8f0;
+    background: rgba(255, 248, 240, 0.92);
     border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #7b4a35;
-    font-size: 1rem;
-    z-index: 0;
+    padding: 12px;
+    z-index: 5 !important; /* 🔥 AHORA SE VE SIEMPRE */
     box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.letter-preview p {
+    color: #8b0000;
+    font-weight: bold;
+    font-size: 1.15rem;
+    text-align: center;
+    text-shadow: 0 0 6px rgba(255,255,255,0.8);
 }
 
 /* 📜 Carta */
@@ -185,6 +195,7 @@ body {
     transform: translateY(-60px) scale(0.7);
     opacity: 0;
     transition: all 1.2s ease;
+    z-index: 5;
 }
 
 .letter.visible {
@@ -223,5 +234,3 @@ h2 {
 .envelope.open .flap {
     transform: rotateX(180deg);
 }
-
-
