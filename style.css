@@ -8,22 +8,36 @@
 body {
     font-family: "Georgia", serif;
     overflow-x: hidden;
-    background: radial-gradient(circle at top, #b30000 0%, #4a0000 60%, #1a0000 100%);
     color: #3b2a1a;
 }
 
-/* Brillo navideño suave */
-body::before {
-    content: "";
+/* 🎄 Fondo navideño profesional sin imágenes */
+.bg {
     position: fixed;
     inset: 0;
-    background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.15), transparent 60%),
-                radial-gradient(circle at 70% 80%, rgba(255,255,255,0.12), transparent 70%);
-    pointer-events: none;
-    z-index: -1;
+    background:
+        radial-gradient(circle at top, #b30000 0%, #4a0000 50%, #1a0000 100%);
+    z-index: -3;
 }
 
-/* Nieve */
+/* ✨ Luces navideñas animadas */
+.lights {
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(255,255,150,0.25), transparent 60%),
+        radial-gradient(circle at 80% 30%, rgba(255,200,120,0.25), transparent 60%),
+        radial-gradient(circle at 50% 80%, rgba(255,255,255,0.18), transparent 70%);
+    animation: glow 6s ease-in-out infinite alternate;
+    z-index: -2;
+}
+
+@keyframes glow {
+    from { filter: brightness(1); }
+    to { filter: brightness(1.4); }
+}
+
+/* ❄ Copos de nieve realistas */
 .snow {
     position: fixed;
     inset: 0;
@@ -34,8 +48,8 @@ body::before {
         radial-gradient(3px 3px at 50px 90px, white, transparent),
         radial-gradient(3px 3px at 120px 10px, white, transparent);
     background-size: 200px 200px;
-    animation: snow 12s linear infinite;
-    opacity: 0.45;
+    animation: snow 10s linear infinite;
+    opacity: 0.55;
     z-index: -1;
 }
 
@@ -54,12 +68,12 @@ body::before {
     align-items: center;
 }
 
-/* SOBRE 3D */
+/* ✉ SOBRE 3D */
 .envelope-wrapper {
-    width: 320px;
-    height: 220px;
+    width: 340px;
+    height: 240px;
     cursor: pointer;
-    perspective: 1000px;
+    perspective: 1200px;
     margin-bottom: 40px;
 }
 
@@ -72,10 +86,10 @@ body::before {
 .pocket {
     position: absolute;
     inset: 0;
-    background: linear-gradient(145deg, #8b0000, #5a0000);
-    border-radius: 12px;
+    background: linear-gradient(145deg, #a00000, #6a0000);
+    border-radius: 14px;
     z-index: 1;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
 }
 
 .flap {
@@ -83,7 +97,7 @@ body::before {
     top: 0;
     left: 0;
     right: 0;
-    height: 60%;
+    height: 65%;
     background: linear-gradient(145deg, #cc0000, #8b0000);
     clip-path: polygon(0 0, 100% 0, 50% 100%);
     transform-origin: top;
@@ -93,7 +107,7 @@ body::before {
 
 .letter-preview {
     position: absolute;
-    inset: 20% 10% 10% 10%;
+    inset: 22% 12% 12% 12%;
     background: #fff8f0;
     border-radius: 10px;
     display: flex;
@@ -105,7 +119,7 @@ body::before {
     box-shadow: 0 8px 20px rgba(0,0,0,0.3);
 }
 
-/* Carta */
+/* 📜 Carta */
 .letter {
     width: 90%;
     max-width: 600px;
@@ -113,7 +127,7 @@ body::before {
     border-radius: 14px;
     padding: 24px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    transform: translateY(-40px) scale(0.8);
+    transform: translateY(-60px) scale(0.7);
     opacity: 0;
     transition: all 1.2s ease;
 }
@@ -121,10 +135,6 @@ body::before {
 .letter.visible {
     transform: translateY(0) scale(1);
     opacity: 1;
-}
-
-.letter-content {
-    line-height: 1.6;
 }
 
 .photo {
@@ -154,7 +164,7 @@ h2 {
     color: #5a3b2a;
 }
 
-/* Animación al abrir */
+/* Animación abrir/cerrar */
 .envelope.open .flap {
     transform: rotateX(180deg);
 }
