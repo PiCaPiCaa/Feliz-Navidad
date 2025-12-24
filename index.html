@@ -2,49 +2,90 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
-    <title>Feliz Navidad 🎄❤️</title>
+    <title>Carta de Navidad para Ti 🎄❤️</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <audio id="navidad-audio" src="assets/musica-navidad.mp3" loop></audio>
+    <!-- Música -->
+    <audio id="navidad-audio" src="assets/musica-navidad.mp3"></audio>
 
-    <div class="snow-container"></div>
+    <!-- Fondo navideño -->
+    <div class="bg"></div>
+    <div class="snow"></div>
 
     <div class="container">
+
+        <!-- Sobre 3D -->
         <div class="envelope-wrapper" id="envelope">
             <div class="envelope">
                 <div class="flap"></div>
                 <div class="pocket"></div>
                 <div class="letter-preview">
-                    <div class="seal">❤️</div>
-                    <p>Toca para abrir</p>
+                    <p>Haz clic para abrir tu carta</p>
                 </div>
             </div>
         </div>
 
+        <!-- Carta que sale del sobre -->
         <div class="letter" id="letter">
             <div class="letter-content">
-                <img src="assets/foto-ella-y-tu.jpg" class="photo" alt="Nuestro Momento" />
-                
-                <h2>🎄✨ Feliz Navidad ✨🎄</h2>
-                <p class="to">Para ti, Sergio y familia</p>
 
-                <div class="text-body">
-                    <p>Hoy, desde Las Palmas, quiero enviaros un abrazo que cruce el mar y llegue hasta Sevilla...</p>
-                    <p>A ti, que eres mi calma y mi ilusión. Gracias por hacer que la distancia sea pequeña. Esta Navidad no puedo abrazarte, pero te llevo en cada deseo.</p>
-                    <p>A Sergio, que nunca pierda esa luz y alegría que contagia a todos.</p>
-                    <p>Y a tu familia, salud, unión y paz en estas fiestas tan especiales.</p>
-                </div>
+                <img src="assets/foto-ella-y-tu.jpg" class="photo" />
 
-                <h3 class="closing">Ojalá estas fiestas os abracen fuerte.</h3>
-                <p class="signature">Con todo mi cariño,<br><span>Eduardo</span></p>
-                
-                <button id="close-btn">Cerrar Carta ✉️</button>
+                <h2>🎄✨ Carta de Navidad para ti, para Sergio y para vuestra familia ✨🎄</h2>
+
+                <p>
+                    Hoy, desde Las Palmas, quiero enviaros un abrazo que cruce el mar
+                    y llegue hasta Sevilla, donde están las personas que hacen que mi vida
+                    se sienta un poquito más luminosa.
+                </p>
+
+                <p>
+                    A ti, que eres mi calma, mi ilusión y mi pensamiento favorito del día.
+                    Gracias por hacer que incluso la distancia se sienta pequeña.
+                    Esta Navidad no puedo abrazarte como quisiera,
+                    pero sí puedo recordarte lo importante que eres para mí
+                    y lo mucho que deseo compartir contigo todo lo que viene.
+                </p>
+
+                <p>
+                    A Sergio, le deseo una Navidad llena de risas, juegos
+                    y momentos bonitos que se queden en su memoria.
+                    Que nunca pierda esa luz tan especial que tiene,
+                    esa alegría que contagia incluso desde lejos.
+                </p>
+
+                <p>
+                    Y a tu familia, les mando mis mejores deseos:
+                    salud, unión, paz y una Navidad llena de cariño.
+                    Gracias por ser parte de tu mundo,
+                    porque todo lo que te rodea también es valioso para mí.
+                </p>
+
+                <p>
+                    Ojalá estas fiestas os abracen fuerte,
+                    os llenen de magia,
+                    y os regalen momentos que calienten el corazón.
+                </p>
+
+                <p>
+                    Yo, desde aquí, os pienso, os valoro
+                    y os llevo conmigo en cada deseo de Año Nuevo.
+                </p>
+
+                <h3 class="closing">
+                    Feliz Navidad, mi amor.<br>
+                    Feliz Navidad, Sergio.<br>
+                    Feliz Navidad a toda vuestra familia.
+                </h3>
+
+                <p class="signature">Con todo mi cariño,<br>Eduardo</p>
+
             </div>
         </div>
+
     </div>
 
     <script src="script.js"></script>
